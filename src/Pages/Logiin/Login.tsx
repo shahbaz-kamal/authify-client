@@ -1,11 +1,15 @@
-import { useLoginMutation } from "@/Redux/features/user/user.api";
+import { authApi, useLoginMutation } from "@/Redux/features/user/user.api";
+import { useAppDispatch } from "@/Redux/hook";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const Login = () => {
+    const dispatch=useAppDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const [login] = useLoginMutation();
 
@@ -33,7 +37,11 @@ const Login = () => {
       console.log(userInfo);
       const result = await login(userInfo).unwrap();
       console.log(result);
-      toast.success("Login successful!", { id: toastId });
+      if (result.success) {
+        dispatch(authApi.util.invalidateTags(["USER"]));
+        navigate("/profile");
+        toast.success("Login successful!", { id: toastId });
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -99,7 +107,7 @@ const Login = () => {
         </button>
       </form>
       <div className="my-6 ">
-        Dont have an account? {" "}
+        Dont have an account?{" "}
         <span className="font-bold">
           <Link to="/register">Login</Link>
         </span>

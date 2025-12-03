@@ -14,3 +14,7 @@ export interface IRegister {
   email: string;
   password: string;
 }
+export interface IUpdateUser {
+    userId:string;
+    data: FormData;
+    }
