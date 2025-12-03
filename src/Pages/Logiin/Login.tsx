@@ -1,11 +1,13 @@
+import { Button } from "@/components/ui/button";
 import { authApi, useLoginMutation } from "@/Redux/features/user/user.api";
 import { useAppDispatch } from "@/Redux/hook";
+import { PhoneCall } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const Login = () => {
-    const dispatch=useAppDispatch()
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -105,11 +107,20 @@ const Login = () => {
         >
           Login
         </button>
+        <Link className="mt-2 " to={"/login-with-phone"}>
+          {" "}
+          <Button className="w-full" variant="outline" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <PhoneCall></PhoneCall>
+            </svg>
+            Login With Phone Number
+          </Button>
+        </Link>
       </form>
       <div className="my-6 ">
         Dont have an account?{" "}
         <span className="font-bold">
-          <Link to="/register">Login</Link>
+          <Link to="/register">Register</Link>
         </span>
       </div>
     </div>

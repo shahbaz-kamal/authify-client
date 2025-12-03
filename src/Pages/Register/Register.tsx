@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { useRegisterMutation } from "@/Redux/features/user/user.api";
+import { PhoneCall } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
@@ -46,6 +48,7 @@ const Register = () => {
       <h1 className="font-bold mb-4">Register</h1>
 
       <form onSubmit={handleSubmit}>
+       
         <div style={{ marginBottom: "15px" }} className="text-start">
           <label>Name</label>
           <input
@@ -113,9 +116,18 @@ const Register = () => {
         >
           Register
         </button>
+        <Link className="mb-2 " to={"/login-with-phone"}>
+          {" "}
+          <Button className="w-full" variant="outline" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <PhoneCall></PhoneCall>
+            </svg>
+            Regi With Phone Number
+          </Button>
+        </Link>
       </form>
       <div className="my-6 ">
-        ALready have an account? {" "}
+        ALready have an account?{" "}
         <span className="font-bold">
           <Link to="/login">Login</Link>
         </span>
