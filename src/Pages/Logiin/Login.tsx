@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { authApi, useLoginMutation } from "@/Redux/features/user/user.api";
 import { useAppDispatch } from "@/Redux/hook";
@@ -15,7 +16,7 @@ const Login = () => {
 
   const [login] = useLoginMutation();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     console.log({ email, password });
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

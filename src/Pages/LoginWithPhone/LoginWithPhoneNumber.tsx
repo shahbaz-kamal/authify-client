@@ -1,13 +1,12 @@
+import { Button } from "@/components/ui/button";
+import { auth } from "@/config/firebase.config";
+import { useLoginWithPhoneMutation } from "@/Redux/features/user/user.api";
+import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from "firebase/auth";
 import { useState } from "react";
-import { useRef } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Button } from "@/components/ui/button";
-import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from "firebase/auth";
-import { auth } from "@/config/firebase.config";
-import { toast } from "sonner";
-import { useLoginWithPhoneMutation } from "@/Redux/features/user/user.api";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const LoginWithPhoneNumber = () => {
   const [loginWithPhone] = useLoginWithPhoneMutation();
@@ -16,7 +15,7 @@ const LoginWithPhoneNumber = () => {
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [user, setUser] = useState<ConfirmationResult | null>(null);
-  const handleSendOtp = async (e) => {
+  const handleSendOtp = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       if (!phone) return toast.error("Enter a valid phone number");

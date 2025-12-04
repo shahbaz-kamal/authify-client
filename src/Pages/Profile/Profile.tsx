@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { useGetMeQuery, useUpdateUserMutation } from "@/Redux/features/user/user.api";
 import { useState } from "react";
@@ -16,7 +17,7 @@ const Profile = () => {
 
   const user = userData?.data;
 
-  const handleUpdateSubmit = async (e) => {
+  const handleUpdateSubmit = async (e:any) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", profilePicture as File);
@@ -43,7 +44,7 @@ const Profile = () => {
         console.log("responseee", res);
         setUpdateProfile(false);
       }
-    } catch (error) {
+    } catch (error:any) {
       toast.error(error.data.message);
       console.log("Err:", error);
     }
@@ -100,8 +101,8 @@ const Profile = () => {
               <textarea
                 name="bio"
                 defaultValue={user?.bio}
-                className="w-full mt-2 p-2 border rounded"
-                rows="3"
+                className="w-full mt-2 p-2 border rounded h-32"
+              
                 placeholder="enter your bio"
               ></textarea>
             </div>

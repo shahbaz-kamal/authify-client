@@ -21,3 +21,6 @@ export interface IUpdateUser {
     userId:string;
     data: FormData;
     }
+
+
+    

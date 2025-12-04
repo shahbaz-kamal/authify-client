@@ -8,8 +8,8 @@ import { toast } from "sonner";
 
 // Navigation links array to be used in both desktop and mobile menus
 
-export default function Component() {
-  const navigate=useNavigate()
+export default function Navbar() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { data: userData, isLoading } = useGetMeQuery(undefined);
   const [logout] = useLogoutMutation();
@@ -30,11 +30,11 @@ export default function Component() {
       await logout(undefined);
       dispatch(authApi.util.resetApiState());
       dispatch(authApi.util.invalidateTags(["USER"]));
-   
-      toast.success("Log out successfull", { id: toastId })
-      navigate("/login")
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
+
+      navigate("/login");
+      toast.success("Log out successfull", { id: toastId });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       toast.error(error.data.message);
     }
   };
@@ -80,7 +80,7 @@ export default function Component() {
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {links.map((link, _index) => (
                     <NavigationMenuItem className="w-full" key={link.href}>
-                      <NavigationMenuLink active={link.active} className="py-1.5" href={link.href}>
+                      <NavigationMenuLink className="py-1.5" href={link.href}>
                         {link.label}
                       </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -99,11 +99,7 @@ export default function Component() {
               <NavigationMenuList className="gap-2">
                 {links.map((link, _index) => (
                   <NavigationMenuItem key={link.href}>
-                    <NavigationMenuLink
-                      active={link.active}
-                      className="py-1.5 font-medium text-muted-foreground hover:text-primary"
-                      href={link.href}
-                    >
+                    <NavigationMenuLink className="py-1.5 font-medium text-muted-foreground hover:text-primary" href={link.href}>
                       {link.label}
                     </NavigationMenuLink>
                   </NavigationMenuItem>
@@ -115,12 +111,12 @@ export default function Component() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           {userData?.data ? (
-            <Button onClick={handleLogout} asChild className="text-sm" size="sm">
-              <a href="/register">Log Out</a>
+            <Button onClick={handleLogout} className="text-sm" size="sm">
+              Log Out
             </Button>
           ) : (
             <Button asChild className="text-sm" size="sm" variant="ghost">
-              <a href="/Login">Login</a>
+              <a href="/login">Login</a>
             </Button>
           )}
         </div>

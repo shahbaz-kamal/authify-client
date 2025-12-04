@@ -2,15 +2,17 @@ import { Button } from "@/components/ui/button";
 import { useRegisterMutation } from "@/Redux/features/user/user.api";
 import { PhoneCall } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [register] = useRegisterMutation();
-  const handleSubmit = async (e) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log({ name, email, password });
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,7 +36,10 @@ const Register = () => {
       console.log(userInfo);
       const result = await register(userInfo).unwrap();
       console.log(result);
-      if (result.success) toast.success("Registration successful!", { id: toastId });
+      if (result.success) {
+        navigate("/login");
+        toast.success("Registration successful! Please Login to continue", { id: toastId });
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -48,7 +53,6 @@ const Register = () => {
       <h1 className="font-bold mb-4">Register</h1>
 
       <form onSubmit={handleSubmit}>
-       
         <div style={{ marginBottom: "15px" }} className="text-start">
           <label>Name</label>
           <input
@@ -116,7 +120,7 @@ const Register = () => {
         >
           Register
         </button>
-        <Link  to={"/login-with-phone"}>
+        <Link to={"/login-with-phone"}>
           {" "}
           <Button className="w-full mt-4" variant="outline" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
