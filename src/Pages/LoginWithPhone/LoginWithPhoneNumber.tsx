@@ -6,8 +6,12 @@ import { Button } from "@/components/ui/button";
 import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from "firebase/auth";
 import { auth } from "@/config/firebase.config";
 import { toast } from "sonner";
+import { useLoginWithPhoneMutation } from "@/Redux/features/user/user.api";
+import { useNavigate } from "react-router";
 
 const LoginWithPhoneNumber = () => {
+  const [loginWithPhone] = useLoginWithPhoneMutation();
+  const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
@@ -22,7 +26,7 @@ const LoginWithPhoneNumber = () => {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha", { size: "invisible" });
 
       const confirmation = await signInWithPhoneNumber(auth, formattedPhone, recaptcha);
-      setUser(confirmation)
+      setUser(confirmation);
       console.log("OTP sent:", confirmation);
       setOtpSent(true);
       toast.success("OTP sent successfully!");
@@ -31,26 +35,34 @@ const LoginWithPhoneNumber = () => {
       toast.error(error.message || "Failed to send OTP");
     }
   };
-
+  console.log("Phonnnn", phone);
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!otp) return toast.error("Enter OTP");
-  
+
     if (!user) return toast.error("No OTP session found");
-  
+
     try {
       // Confirm the OTP
       const result = await user.confirm(otp);
-  
+
       const firebaseUser = result.user;
-  
+
       console.log("Phone verified, user:", firebaseUser);
-  
+
       // You can get Firebase ID token if needed
-      const idToken = await firebaseUser.getIdToken();
-      console.log("Firebase ID token:", idToken);
-  
-      toast.success("Phone number verified successfully!");
+      // const idToken = await firebaseUser.getIdToken();
+      // console.log("Firebase ID token:", idToken);
+      if (firebaseUser) {
+        const userInfo = { phone };
+        const response = await loginWithPhone(userInfo).unwrap();
+        console.log("Final Response",response)
+        if (response.success) {
+          toast.success("Phone number verified successfully!");
+          navigate("/profile");
+        }
+      }
+
       // Reset form or redirect user
       setOtpSent(false);
       setOtp("");

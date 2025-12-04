@@ -116,13 +116,13 @@ const Register = () => {
         >
           Register
         </button>
-        <Link className="mb-2 " to={"/login-with-phone"}>
+        <Link  to={"/login-with-phone"}>
           {" "}
-          <Button className="w-full" variant="outline" type="button">
+          <Button className="w-full mt-4" variant="outline" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <PhoneCall></PhoneCall>
             </svg>
-            Regi With Phone Number
+            Register With Phone Number
           </Button>
         </Link>
       </form>

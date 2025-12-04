@@ -3,11 +3,13 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { authApi, useGetMeQuery, useLogoutMutation } from "@/Redux/features/user/user.api";
 import { useAppDispatch } from "@/Redux/hook";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
 // Navigation links array to be used in both desktop and mobile menus
 
 export default function Component() {
+  const navigate=useNavigate()
   const dispatch = useAppDispatch();
   const { data: userData, isLoading } = useGetMeQuery(undefined);
   const [logout] = useLogoutMutation();
@@ -30,6 +32,7 @@ export default function Component() {
       dispatch(authApi.util.invalidateTags(["USER"]));
    
       toast.success("Log out successfull", { id: toastId })
+      navigate("/login")
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
       toast.error(error.data.message);

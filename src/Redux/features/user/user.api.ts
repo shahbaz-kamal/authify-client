@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { baseApi } from "@/Redux/baseApi";
-import type { ILogin, IRegister, IResponse, IUpdateUser } from "@/types";
+import type { ILogin, ILoginWithPhone, IRegister, IResponse, IUpdateUser } from "@/types";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -11,7 +11,13 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         data: userInfo,
       }),
-      
+    }),
+    loginWithPhone: builder.mutation<IResponse<any>, ILoginWithPhone>({
+      query: (userInfo) => ({
+        url: "/user/login-with-phone-number",
+        method: "POST",
+        data: userInfo,
+      }),
     }),
     register: builder.mutation<IResponse<any>, IRegister>({
       query: (userInfo) => ({
@@ -28,13 +34,13 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["USER"],
     }),
     updateUser: builder.mutation<IResponse<any>, IUpdateUser>({
-        query: ({ userId, data }) => ({
-          url: `/user/${userId}`,
-          method: "PATCH",
-          data: data,
-        }),
-        invalidatesTags:["USER"]
+      query: ({ userId, data }) => ({
+        url: `/user/${userId}`,
+        method: "PATCH",
+        data: data,
       }),
+      invalidatesTags: ["USER"],
+    }),
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     getMe: builder.query<IResponse<any>, undefined>({
@@ -50,7 +56,8 @@ export const authApi = baseApi.injectEndpoints({
 export const {
   useRegisterMutation,
   useLoginMutation,
-
   useGetMeQuery,
-  useLogoutMutation,useUpdateUserMutation
+  useLogoutMutation,
+  useUpdateUserMutation,
+  useLoginWithPhoneMutation,
 } = authApi;

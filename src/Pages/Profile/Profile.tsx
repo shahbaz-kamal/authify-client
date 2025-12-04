@@ -18,14 +18,19 @@ const Profile = () => {
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData();
     formData.append("file", profilePicture as File);
-
-    const userData = {
-      bio: e.target.bio.value,
-      location: e.target.location.value,
-    };
-
+    const userData: {
+      name?: string;
+      bio?: string;
+      location?: string;
+    } = {};
+    const name = e.target.name.value.trim();
+    const bio = e.target.bio.value.trim();
+    const location = e.target.location.value.trim();
+    if (name) userData.name = name;
+    if (bio) userData.bio = bio;
+    if (location) userData.location = location;
     formData.append("data", JSON.stringify(userData));
     const toastId = toast.success("Updating your profile");
     try {
@@ -39,7 +44,8 @@ const Profile = () => {
         setUpdateProfile(false);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.data.message);
+      console.log("Err:", error);
     }
     console.log("from formdata", formData.get("data"));
     console.log("from formdata", formData.get("file"));
@@ -85,13 +91,23 @@ const Profile = () => {
 
           <form onSubmit={handleUpdateSubmit} className="space-y-5">
             {/* Bio */}
-            <div>
+            <div className="text-start">
+              <label className="font-medium">Name</label>
+              <input name="name" defaultValue={user?.name} className="w-full mt-2 p-2 border rounded"></input>
+            </div>
+            <div className="text-start">
               <label className="font-medium">Bio</label>
-              <textarea name="bio" defaultValue={user?.bio} className="w-full mt-2 p-2 border rounded" rows="3"></textarea>
+              <textarea
+                name="bio"
+                defaultValue={user?.bio}
+                className="w-full mt-2 p-2 border rounded"
+                rows="3"
+                placeholder="enter your bio"
+              ></textarea>
             </div>
 
             {/* Location */}
-            <div>
+            <div className="text-start">
               <label className="font-medium">Location</label>
               <input name="location" defaultValue={user?.location} className="w-full mt-2 p-2 border rounded" type="text" />
             </div>
