@@ -1,3 +1,5 @@
+import type { ComponentType, JSX } from "react";
+
 export interface IResponse<T> {
   statusCode: number;
   success: boolean;
@@ -10,17 +12,21 @@ export interface ILogin {
   password: string;
 }
 export interface ILoginWithPhone {
- phone:string
+  phone: string;
 }
 export interface IRegister {
-    name:string
+  name: string;
   email: string;
   password: string;
 }
 export interface IUpdateUser {
-    userId:string;
-    data: FormData;
-    }
+  userId: string;
+  data: FormData;
+}
 
-
-    
+export interface ISidebarItems {
+  title: string;
+  url: string;
+  component: ComponentType;
+  icon: JSX.Element;
+}

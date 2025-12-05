@@ -1,6 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -9,7 +17,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
-
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -40,17 +47,40 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-dashboard-background: var(--dashboard-background);
+  --color-color-78: var(--color-78);
+  --color-color-active: var(--color-active);
+  --color-color-18: var(--color-18);
+  --color-color-63: var(--color-63);
+  --color-color-cc: var(--color-cc);
+  --color-color-00: var(--color-00);
+  --color-color-ea: var(--color-ea);
+  --color-color-bc: var(--color-bc);
+  --color-color-53: var(--color-53);
+  --color-color-70: var(--color-70);
+  --color-color-79: var(--color-79);
+  --color-color-25: var(--color-25);
+  --color-color-ff: var(--color-ff);
+  --color-color-9f: var(--color-9f);
+  --color-color-e4: var(--color-e4);
+  --color-color-d8: var(--color-d8);
+  --color-color-95: var(--color-95);
+  --color-color-ccc: var(--color-ccc);
+  --color-color-2f: var(--color-2f);
+  --color-color-93: var(--color-93);
+  --color-color-eb: var(--color-eb);
+  --color-color-be: var(--color-be);
 }
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0); /*#f54a00*/
+  --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -61,8 +91,8 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0); /*#ff8904*/
-  --chart-1: oklch(0.646 0.222 41.116); /*#ffb86a*/
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
@@ -75,17 +105,40 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --dashboard-background: #90b4cb;
+  --color-78: #7822e4;
+  --color-active: #fe543c;
+  --color-18: #181717;
+  --color-63: #636363;
+  --color-cc: #ccb3ec;
+  --color-00: #00a728;
+  --color-ea: #eae7f8;
+  --color-bc: #bcc5d7bf;
+  --color-53: #535353;
+  --color-dc: #dce0ed;
+  --color-70: #705996;
+  --color-79: #79d49b;
+  --color-25: #25c962;
+  --color-ff: #ff9080;
+  --color-9f: #9fbae5;
+  --color-e4: #e4f1fa;
+  --color-d8: #d8ffdf;
+  --color-95: #95cfa4;
+  --color-ccc: #cccccc;
+  --color-2f: #2f2e2e;
+  --color-93: #938988;
+  --color-eb: #ebf6ff;
+  --color-be: #be8283;
 }
 
 .dark {
   --background: oklch(0.145 0 0);
-
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0); /*#ff6900*/
+  --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -120,4 +173,3 @@
     @apply bg-background text-foreground;
   }
 }
-
