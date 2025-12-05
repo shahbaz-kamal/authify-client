@@ -1,0 +1,75 @@
+[
+    {
+      "userId": "U001",
+      "name": "Alice Johnson",
+      "level": 12,
+      "diamonds": 150,
+      "beans": 320,
+      "coinSell": 50,
+      "coinBuy": 100,
+      "location": "New York",
+      "status": "Active",
+      "action": "Edit"
+    },
+    {
+      "userId": "U002",
+      "name": "Bob Smith",
+      "level": 8,
+      "diamonds": 80,
+      "beans": 210,
+      "coinSell": 30,
+      "coinBuy": 70,
+      "location": "Los Angeles",
+      "status": "Inactive",
+      "action": "Edit"
+    },
+    {
+      "userId": "U003",
+      "name": "Charlie Lee",
+      "level": 15,
+      "diamonds": 200,
+      "beans": 500,
+      "coinSell": 60,
+      "coinBuy": 120,
+      "location": "Chicago",
+      "status": "Active",
+      "action": "Edit"
+    },
+    {
+      "userId": "U004",
+      "name": "Diana Evans",
+      "level": 10,
+      "diamonds": 120,
+      "beans": 300,
+      "coinSell": 40,
+      "coinBuy": 90,
+      "location": "Houston",
+      "status": "Active",
+      "action": "Edit"
+    },
+    {
+      "userId": "U005",
+      "name": "Ethan Clark",
+      "level": 7,
+      "diamonds": 60,
+      "beans": 180,
+      "coinSell": 20,
+      "coinBuy": 50,
+      "location": "Miami",
+      "status": "Inactive",
+      "action": "Edit"
+    },
+    {
+      "userId": "U006",
+      "name": "Fiona Brown",
+      "level": 13,
+      "diamonds": 170,
+      "beans": 400,
+      "coinSell": 55,
+      "coinBuy": 110,
+      "location": "Seattle",
+      "status": "Active",
+      "action": "Edit"
+    }
+  ]
+  

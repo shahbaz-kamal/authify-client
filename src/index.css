@@ -70,6 +70,7 @@
   --color-color-93: var(--color-93);
   --color-color-eb: var(--color-eb);
   --color-color-be: var(--color-be);
+  --color-color-df: var(--color-df);
 }
 
 :root {
@@ -129,6 +130,7 @@
   --color-93: #938988;
   --color-eb: #ebf6ff;
   --color-be: #be8283;
+  --color-df: #DFDFDF;
 }
 
 .dark {
